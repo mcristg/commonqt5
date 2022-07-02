@@ -87,9 +87,12 @@
 
 (defun start-gui-thread (&optional (install-repl-hook t))
   (unless (boundp '*gui-thread*)
-    (ensure-smoke :qtcore)
-    (ensure-smoke :qtgui)
-    (ensure-smoke :qtwidgets)
+    #-qt6(ensure-smoke :qtcore)
+    #-qt6(ensure-smoke :qtgui)
+    #-qt6(ensure-smoke :qtwidgets)
+    #+qt6(ensure-smoke :qt6core)
+    #+qt6(ensure-smoke :qt6gui)
+    #+qt6(ensure-smoke :qt6widgets)
     (setf *notifier* (make-instance 'repl-notifier)
           *gui-thread*
           (let ((global-values (mapcar #'symbol-value *globals*)))

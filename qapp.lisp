@@ -54,9 +54,12 @@
 (defun make-qapplication (&rest args)
   (cond (*qapplication*)
         (t
-         (ensure-smoke :qtcore)
-         (ensure-smoke :qtgui)
-         (ensure-smoke :qtwidgets)
+         #-qt6(ensure-smoke :qtcore)
+         #-qt6(ensure-smoke :qtgui)
+         #-qt6(ensure-smoke :qtwidgets)
+         #+qt6(ensure-smoke :qt6core)
+         #+qt6(ensure-smoke :qt6gui)
+         #+qt6(ensure-smoke :qt6widgets)
          (let ((instance (#_QCoreApplication::instance)))
            (setf *qapplication*
                  (if (null-qobject-p instance)
@@ -120,9 +123,12 @@
   ;;
   ;; On non-Windows, we don't have this problem, so do nothing.
   ;;
-  (ensure-smoke :qtcore)
-  (ensure-smoke :qtgui)
-  (ensure-smoke :qtwidgets)
+  #-qt6(ensure-smoke :qtcore)
+  #-qt6(ensure-smoke :qtgui)
+  #-qt6(ensure-smoke :qtwidgets)
+  #+qt6(ensure-smoke :qt6core)
+  #+qt6(ensure-smoke :qt6gui)
+  #+qt6(ensure-smoke :qt6widgets)
   (let ((v (windows-version)))
     (when (and v (< v +vista+))
       (#_QApplication::setStyle "Plastique"))))
