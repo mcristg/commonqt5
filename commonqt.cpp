@@ -5,7 +5,7 @@
 #include <smoke.h>
 #include <smoke/qtcore_smoke.h>
 #include <QtCore>
-#include <QtCore/5.14.2/QtCore/private/qmetaobjectbuilder_p.h>
+#include <private/qmetaobjectbuilder_p.h>
 #include <QtGui>
 #include <QtWidgets>
 #include "commonqt.h"
