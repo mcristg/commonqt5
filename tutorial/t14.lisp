@@ -76,7 +76,7 @@
   (#_new QRect 145 (- (#_height instance) 100) 15 99))
 
 (defun barrel-hit-p (instance pos)
-  (with-objects ((matrix (#_new QMatrix)))
+  (with-objects ((matrix (#_new QTransform)))
     (#_translate matrix 0 (#_height instance))
     (#_rotate matrix (- (current-angle instance)))
     (with-objects ((br (barrel-rect))
