@@ -31,6 +31,7 @@
 
 ;;; Create a QApplication from command line arguments.
 ;;;
+
 ;;; Usually, programs just pass argc and argv from their `main' function here.
 ;;; We take a Lisp list and set up a fresh argv array.
 ;;;
@@ -55,6 +56,7 @@
         (t
          (ensure-smoke :qtcore)
          (ensure-smoke :qtgui)
+         (ensure-smoke :qtwidgets)
          (let ((instance (#_QCoreApplication::instance)))
            (setf *qapplication*
                  (if (null-qobject-p instance)
@@ -120,6 +122,7 @@
   ;;
   (ensure-smoke :qtcore)
   (ensure-smoke :qtgui)
+  (ensure-smoke :qtwidgets)
   (let ((v (windows-version)))
     (when (and v (< v +vista+))
       (#_QApplication::setStyle "Plastique"))))
