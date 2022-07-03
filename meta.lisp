@@ -339,16 +339,6 @@ Should be used as an optimization."
             (arg-qtypes slot-or-signal) (find-signal-arg-qtypes arg-types))))
   slot-or-signal)
 
-(defconstant +AccessPrivate+ #x00)
-(defconstant +AccessProtected+ #x01)
-(defconstant +AccessPublic+ #x02)
-(defconstant +MethodMethod+ #x00)
-(defconstant +MethodSignal+ #x04)
-(defconstant +MethodSlot+ #x08)
-(defconstant +MethodCompatibility+ #x10)
-(defconstant +MethodCloned+ #x20)
-(defconstant +MethodScriptable+ #x40)
-
 (defun make-metaobject (parent class-name class-infos signals slots)
   (let ((builder (sw_make_metaobject_builder (cffi:foreign-string-alloc class-name :encoding :ascii)
                                              (qobject-pointer parent))))
