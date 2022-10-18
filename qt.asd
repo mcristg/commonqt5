@@ -97,7 +97,8 @@
      (:file "property")
      (:file "qlist")
      (:file "qapp")
-     (:file "connect"))))
+     (:file "connect")
+     (:file "image-utils"))))
   :defsystem-depends-on (:trivial-features)
   :depends-on (:cffi :named-readtables :cl-ppcre :alexandria
                :closer-mop

@@ -82,5 +82,7 @@
            #:cast
            #:qobject-deleted
            #:with-main-window
-           #:enum-equal)
+           #:enum-equal
+           #:generate-image-array
+           #:pixmap)
   (:import-from alexandria named-lambda))
