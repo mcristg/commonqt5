@@ -42,6 +42,7 @@ endif()
 message(STATUS "Found ${QT_VERSION}: version ${QT_CORE_VERSION}") 
 
 message(STATUS "Found ${SMOKE_LIB}/include")
+
  
 include_directories(${Qt_ROOT_DIR}/include/QtCore/${QT_CORE_VERSION} 
                     ${Qt_ROOT_DIR}/include/QtCore/${QT_CORE_VERSION}/QtCore 
@@ -57,6 +58,17 @@ else()
    target_link_libraries(${COMMONQT} smokeqtcore smokebase ${QT_VERSION}::Widgets ${QT_VERSION}::PrintSupport)
 endif()  
 
+string(REPLACE "." ";" VERSION_LIST ${QT_CORE_VERSION})
+list(GET VERSION_LIST 0 VERSION_MAJOR)
+list(GET VERSION_LIST 1 VERSION_MINOR)
+list(GET VERSION_LIST 2 VERSION_PATCH)
+
+set_target_properties(${COMMONQT}
+    PROPERTIES
+    VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
+    SOVERSION ${VERSION_MAJOR}
+    CXX_STANDARD 17
+)
 
 if(WIN32)
    install( TARGETS ${COMMONQT} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
