@@ -76,6 +76,7 @@ else()
    install( TARGETS ${COMMONQT} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 endif()
 
+# Taken from https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
 # uninstall target
 if(NOT TARGET uninstall)
   configure_file(
